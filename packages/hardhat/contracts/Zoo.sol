@@ -24,7 +24,7 @@ import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
  * 4. If the player fails to take action, they lose their ability
  * to steal and an NFT is randomly assigned to them.
  */
-contract Game is Ownable, ERC721Holder, VRFConsumerBase, ReentrancyGuard {
+contract Zoo is Ownable, ERC721Holder, VRFConsumerBase, ReentrancyGuard {
     event Received(address, uint256);
     event PrizeTransfer(address to, address nftishka, uint256 id, uint256 nftIx);
     struct Nft {
