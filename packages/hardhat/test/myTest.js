@@ -9,9 +9,8 @@ describe("My Dapp", function () {
 
   describe("YourContract", function () {
     it("Should deploy YourContract", async function () {
-      const YourContract = await ethers.getContractFactory("Zoo");
-
-      myContract = await YourContract.deploy();
+      const contract = await ethers.getContractFactory("Zoo");
+      Zoo = await contract.deploy();
     });
   });
 });
