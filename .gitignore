@@ -38,3 +38,15 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+
+node_modules
+
+#Hardhat files
+cache
+artifacts
+
+node_modules
+
+#Hardhat files
+cache
+artifacts
