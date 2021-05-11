@@ -9,8 +9,13 @@ describe("My Dapp", function () {
 
   describe("YourContract", function () {
     it("Should deploy YourContract", async function () {
-      const contract = await ethers.getContractFactory("Zoo");
-      Zoo = await contract.deploy();
+      const zooContract = await ethers.getContractFactory("Zoo");
+      const colletableContract = await ethers.getContractFactory("Collectable");
+      Zoo = await zooContract.deploy();
+      Collectable = await colletableContract.deploy();
     });
+    it('mints a collectable', async () => {
+      //await Collectable.createCollectible();
+    })
   });
 });
