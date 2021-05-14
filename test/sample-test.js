@@ -1,29 +1,25 @@
 const { expect } = require("chai");
-const { constants} = require('ethers');
 
 
-describe('Setup', () => {
-  let linkTokenAddress;
-  let collectables;
-  let vRFConsumerBase;
-  let addrs;
-  let keyHash;
-  beforeEach(async () => {
-    [owner, addrs1, ...addrs] = await ethers.getSigners();
-    let VRFConsumerBase = await ethers.getContractAt("VRFConsumerBase");
-    vRFConsumerBase = await VRFConsumerBase.deploy()
-    //
-    let Collectables = await ethers.getContractFactory("AdvancedCollectable");
-    collectables = await Collectables.deploy(vRFConsumerBase, addrs1, keyHash);
-  })
-  describe("Greeter", function() {
-    it("Should return the new greeting once it's changed", async function() {
+
+
+
+describe('RandomNumberConsumer', async () => {
+  let randomNumberConsumer, vrfCoordinatorMock, seed
+
+    beforeEach(async () => {
+      await deployments.fixture(['mocks', 'vrf'])
+
+      seed = 123
+      const LinkToken = await deployments.get('LinkToken')
+      linkToken = await ethers.getContract('LinkToken', LinkToken.address)
       
-      
-      console.log(collectables);
-      
-    });
-  });
+    })
+
+    it('should successfully make an external random number request', async () => {
+      console.log(linkToken.address)
+    })
+
 })
 
 
