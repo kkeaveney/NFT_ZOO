@@ -2,7 +2,7 @@
  * @type import('hardhat/config').HardhatUserConfig
  */
 
- require('dotenv').config()
+ 
  require("@nomiclabs/hardhat-waffle")
  require("@nomiclabs/hardhat-ethers")
  require("@nomiclabs/hardhat-truffle5")
@@ -10,15 +10,15 @@
  require("hardhat-deploy")
  require("./tasks/accounts")
  require("./tasks/balance")
- require("./tasks/fund-link")
- require("./tasks/block-number")
- require("./tasks/block-number")
- require("./tasks/random-number-consumer")
- require("./tasks/price-consumer")
- require("./tasks/api-consumer")
+//  require("./tasks/fund-link")
+//  require("./tasks/block-number")
+//  require("./tasks/block-number")
+//  require("./tasks/random-number-consumer")
+//  require("./tasks/price-consumer")
+//  require("./tasks/api-consumer")
  
  
- 
+ require('dotenv').config()
  
  
  const MAINNET_RPC_URL = process.env.MAINNET_RPC_URL || process.env.ALCHEMY_MAINNET_RPC_URL || "https://eth-mainnet.alchemyapi.io/v2/your-api-key"
@@ -80,7 +80,7 @@
      solidity: {
          compilers: [
              {
-                 version: "0.6.6"
+                 version: "0.8.0"
              },
              {
                  version: "0.4.24"
