@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract SimpleCollectable is ERC721 {
     uint256 public tokenCounter;
-    constructor () public ERC721("GOOD_LOOKING", "GLD") {
+    constructor () public ERC721("GOOD_LOOKING", "GLR") {
         tokenCounter = 0;
     }
 
