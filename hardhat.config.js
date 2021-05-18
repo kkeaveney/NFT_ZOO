@@ -12,7 +12,6 @@ require("./tasks/accounts")
 require("./tasks/balance")
 require("./tasks/fund-link")
 require("./tasks/block-number")
-require("./tasks/block-number")
 require("./tasks/random-number-consumer")
 require("./tasks/price-consumer")
 require("./tasks/api-consumer")
@@ -28,7 +27,7 @@ const MNEMONIC = process.env.MNEMONIC || "your mnemonic"
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "Your etherscan API key"
 // optional
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "your private key"
-console.log('KOVAN',process.env.KOVAN_RPC_URL)
+
 module.exports = {
     defaultNetwork: "hardhat",
     networks: {
