@@ -24,7 +24,7 @@ module.exports = async ({
     vrfCoordinatorAddress = networkConfig[chainId]['vrfCoordinator']
   }
 
-  const baseNFT = await deploy('SimpleCollectable', {
+  const baseNFT = await deploy('BaseNFT', {
       from: deployer
   })
 

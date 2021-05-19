@@ -12,8 +12,8 @@ describe('Simple NFT', async function () {
         await deployments.fixture(['mocks', 'vrf'])
         accounts = await ethers.getSigners();
         owner = accounts[0]
-        const BaseNFT = await deployments.get('SimpleCollectable')
-        baseNFT = await ethers.getContractAt('SimpleCollectable', BaseNFT.address)
+        const BaseNFT = await deployments.get('BaseNFT')
+        baseNFT = await ethers.getContractAt('BaseNFT', BaseNFT.address)
     })
 
     it('creates collectable', async () => {
