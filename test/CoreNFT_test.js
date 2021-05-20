@@ -1,5 +1,5 @@
 const { expect } = require('chai')
-const { parseEther } = require("ethers/lib/utils")
+const { parseEther, id } = require("ethers/lib/utils")
 
 
 
@@ -23,20 +23,27 @@ describe('CoreNFT', async function () {
         const CoreNFT = await deployments.get('CoreNFT')
         coreNFT = await ethers.getContractAt('CoreNFT', CoreNFT.address);
         await linkToken.transfer(coreNFT.address, parseEther('100'))
+        const VRFCoordinatorMock = await deployments.get('VRFCoordinatorMock')
+        vrfCoordinatorMock = await ethers.getContractAt('VRFCoordinatorMock', VRFCoordinatorMock.address)
     })
 
     it('creates collectible', async () => {
         let res = await coreNFT.createCollectible(tokenURI, 3442)
-        let receipt = await res.wait();
-        let event = receipt.events.filter((x) => {return x.event == "RequestCollectible"});
-        let reqId = event[0].args['requestId']
+        expect(await coreNFT.tokenCounter()).to.eq(0)
+        
     })
-
     it('emits a requestCollectible event', async () => {
-        // result = await expect(coreNFT.createCollectible(tokenURI, 12))
-        // .to.emit(coreNFT, 'requestCollectible')
-        // .withArgs('0x0f38113053df00d8687b4e22506fcd3247e3bf5ea9f4330c1e30c0fb9a621814')
+        let res = await coreNFT.createCollectible(tokenURI, 12)
+        // Get requestId from emitted event
+        let receipt = await res.wait();
+        let events = receipt.events.filter((x) => {return x.event == "RequestCollectible"});
+        let requestId = events[0].args['requestId']
         
-        
+        vrfCoordinatorMock.callBackWithRandomness(
+            requestId, 31337, coreNFT.address, {"from": owner.address}
+        )
+
+        expect(await coreNFT.tokenCounter()).to.eq(0)
     })
 })
+
