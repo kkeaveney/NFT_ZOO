@@ -11,7 +11,8 @@ contract CoreNFT is ERC721, VRFConsumerBase {
     mapping (bytes32 => string) requestIdToTokenURI;
     mapping (uint256 => Breed) tokenIdtoBreed;
     mapping (bytes32 => uint256) public requestIdToTokenId;
-    event requestCollectible(bytes32 indexed requestId);
+    mapping (address => bytes32) senderToRequestId;
+    event RequestCollectible(bytes32 indexed requestId);
 
     bytes32 internal keyHash;
     uint256 internal fee;
@@ -31,7 +32,8 @@ contract CoreNFT is ERC721, VRFConsumerBase {
             bytes32 requestId = requestRandomness(keyHash, fee, userProvidedSeed);
             requestIdToSender[requestId] = msg.sender;
             requestIdToTokenURI[requestId] = tokenURI;
-            emit requestCollectible(requestId);
+            emit RequestCollectible(requestId);
+            
         }
     
     function fulfillRandomness(bytes32 requestId, uint256 randomNumber) internal override {
@@ -43,5 +45,7 @@ contract CoreNFT is ERC721, VRFConsumerBase {
         Breed breed = Breed(randomNumber % 3);
         tokenIdtoBreed[newItemId] = breed;
     }
+
+    
 
 }

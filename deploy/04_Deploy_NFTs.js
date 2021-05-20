@@ -35,6 +35,7 @@ module.exports = async ({
     log: true
   })
 
+  
   log("Run the following command to fund contract with LINK:")
   log("npx hardhat fund-link --contract " + baseNFT.address + " --network " + networkConfig[chainId]['name'] + additionalMessage)
   log("npx hardhat fund-link --contract " + coreNFT.address + " --network " + networkConfig[chainId]['name'] + additionalMessage)
