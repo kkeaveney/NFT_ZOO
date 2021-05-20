@@ -33,9 +33,11 @@ contract CoreNFT is ERC721, VRFConsumerBase {
             requestIdToSender[requestId] = msg.sender;
             requestIdToTokenURI[requestId] = tokenURI;
             emit RequestCollectible(requestId);
-            
-        }
-    
+    }
+
+    /**
+     * Callback function used by VRF Coordinator
+     */
     function fulfillRandomness(bytes32 requestId, uint256 randomNumber) internal override {
         address dogOwner = requestIdToSender[requestId];
         string memory tokenURI = requestIdToTokenURI[requestId];
